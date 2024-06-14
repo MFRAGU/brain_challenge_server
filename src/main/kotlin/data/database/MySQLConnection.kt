@@ -5,7 +5,7 @@ import java.sql.DriverManager
 
 class MySQLConnection: SQLDatabaseConnection {
     companion object {
-        private const val JDBC_URL = "jdbc:mysql://localhost:3306/brainchallenge"
+        private const val JDBC_URL = "jdbc:mariadb://localhost:3306/brainchallenge"
         private const val JDBC_USER = "root"
         private const val JDBC_PASSWORD = "root"
     }

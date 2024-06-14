@@ -24,7 +24,7 @@ kotlin {
 dependencies {
     implementation("io.insert-koin:koin-core:3.5.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
-    implementation("com.mysql:mysql-connector-j:8.4.0")
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.12.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
