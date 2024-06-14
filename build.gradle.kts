@@ -9,14 +9,14 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
 tasks.test {
     useJUnitPlatform()
 }
 
 kotlin {
     jvmToolchain(8)
+}
+
+dependencies {
+    implementation("io.insert-koin:koin-core:3.5.6")
 }
