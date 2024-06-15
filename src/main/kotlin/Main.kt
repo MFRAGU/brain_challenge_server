@@ -5,4 +5,5 @@ fun main(){
     startKoin {
         modules(appModule)
     }
+    println("Hello Brain challenge")
 }
