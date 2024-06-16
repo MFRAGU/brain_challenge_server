@@ -1,13 +1,14 @@
 package data.question
 
-import domain.repository.QuestionRepository
+import data.entity.Difficulty
+import data.entity.Question
 
-internal class QuestionRepositoryImpl(
+class QuestionRepositoryImpl(
     private val questionExecutor: QuestionExecutor
 ): QuestionRepository {
-    override fun getRandomQuestions(): List<Question> =
+    override suspend fun getRandomQuestions(): List<Question> =
         questionExecutor.getRandomQuestions()
 
-    override fun getRandomQuestionsByDifficulty(difficulty: Difficulty): List<Question> =
+    override suspend fun getRandomQuestionsByDifficulty(difficulty: Difficulty): List<Question> =
         questionExecutor.getRandomQuestionsByDifficulty(difficulty)
 }

@@ -1,9 +1,11 @@
 package data.question
 
 import data.database.SQLDatabaseConnection
+import data.entity.Difficulty
+import data.entity.Question
 import java.sql.SQLException
 
-internal class QuestionExecutor(sqlDatabaseConnection: SQLDatabaseConnection) {
+class QuestionExecutor(sqlDatabaseConnection: SQLDatabaseConnection) {
     private val connection = sqlDatabaseConnection.getConnection()
     companion object {
         private const val QUESTION_TABLE_NAME = "quizz_questions"

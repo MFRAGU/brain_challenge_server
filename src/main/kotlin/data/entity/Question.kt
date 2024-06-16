@@ -1,4 +1,4 @@
-package data.question
+package data.entity
 
 data class Question(
     val category: String,

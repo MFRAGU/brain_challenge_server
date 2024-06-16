@@ -1,11 +1,11 @@
-package domain
+package domain.question
 
-import data.question.Difficulty
-import domain.repository.QuestionRepository
+import data.entity.Difficulty
+import data.question.QuestionRepository
 
 class GetRandomQuestionsByDifficultyUseCase(
     private val questionRepository: QuestionRepository
 ) {
-    operator fun invoke(difficulty: Difficulty) =
+    suspend operator fun invoke(difficulty: Difficulty) =
         questionRepository.getRandomQuestionsByDifficulty(difficulty)
 }

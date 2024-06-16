@@ -1,4 +1,4 @@
-package data.question
+package data.entity
 
 enum class Difficulty(val value: String) {
     EASY("facile"),
