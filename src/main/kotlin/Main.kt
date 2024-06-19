@@ -1,4 +1,9 @@
+import kotlinx.coroutines.runBlocking
+import org.koin.core.context.startKoin
 
-fun main(){
-    println("Hello Brain challenge")
+fun main() = runBlocking {
+    startKoin {
+        modules(appModule)
+    }
+    SocketManager().startServer()
 }
