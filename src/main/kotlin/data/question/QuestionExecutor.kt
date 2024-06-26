@@ -12,17 +12,17 @@ class QuestionExecutor(sqlDatabaseConnection: SQLDatabaseConnection) {
         private const val CATEGORY_COLUMN = "category"
         private const val ID_COLUMN = "id"
         private const val CORRECT_ANSWER_COLUMN = "correct_answer"
-        private const val INCORRECT_ANSWERS_COLUMN = "incorrect_answers"
+        private const val INCORRECT_ANSWERS_COLUMN = "incorrect_answer"
         private const val QUESTION_COLUMN = "question"
         private const val DIFFICULTY_COLUMN = "difficulty"
-        private const val LIMIT_QUESTIONS = 5
+        private const val LIMIT_QUESTIONS = 10
     }
 
     fun getRandomQuestions(): List<Question> {
         return try {
             val query = """
                 SELECT * FROM $QUESTION_TABLE_NAME 
-                ORDER BY RAND() 
+                ORDER BY RAND()
                 LIMIT $LIMIT_QUESTIONS
                 """
             executeQuery(query)
@@ -36,8 +36,9 @@ class QuestionExecutor(sqlDatabaseConnection: SQLDatabaseConnection) {
     fun getRandomQuestionsByDifficulty(difficulty: Difficulty): List<Question> {
         return try {
             val query = """
-                SELECT * FROM $QUESTION_TABLE_NAME 
+                SELECT * FROM $QUESTION_TABLE_NAME  
                 WHERE $DIFFICULTY_COLUMN = '${difficulty.value}' 
+                ORDER BY RAND()
                 LIMIT $LIMIT_QUESTIONS
             """
             executeQuery(query)

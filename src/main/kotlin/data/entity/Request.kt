@@ -8,5 +8,6 @@ data class Request(
 
 enum class RequestType {
     QUESTION,
+    ASTERISK,
     ERROR
 }
