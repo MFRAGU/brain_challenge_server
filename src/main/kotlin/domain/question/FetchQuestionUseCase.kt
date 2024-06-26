@@ -16,8 +16,7 @@ class FetchQuestionUseCase(
                     val difficultyValue = Difficulty.valueOf(it)
                     val questionList = getRandomQuestionsByDifficultyUseCase(difficultyValue)
                     Result.QuestionResult(questionList)
-                }
-                Result.QuestionResult(emptyList())
+                } ?: Result.QuestionResult(emptyList())
             }
 
             else -> {

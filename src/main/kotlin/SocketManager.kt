@@ -21,35 +21,42 @@ class SocketManager : KoinComponent {
     private val fetchRequestUseCase: FetchRequestUseCase by inject(FetchRequestUseCase::class.java)
 
     suspend fun startServer() = withContext(Dispatchers.IO) {
-        println("Server launched")
-        println("Wainting client...")
-        clientSocket = serverSocket.accept()
-        println("Client connected !")
-        input = BufferedReader(InputStreamReader(clientSocket.getInputStream()))
-        output = PrintWriter(clientSocket.getOutputStream(), true)
-        launch {
-            collectResults()
-        }
-        output.println("You're connected")
-        var line: String?
-        do {
-            line = input.readLine()?.let {
-                println(it)
-                fetchRequestUseCase(it)
-                it
-            }
-        } while (line != null)
+        try {
+            println("Server launched")
+            do {
+                println("Wainting client...")
+                clientSocket = serverSocket.accept()
+                println("Client connected !")
+                input = BufferedReader(InputStreamReader(clientSocket.getInputStream()))
+                output = PrintWriter(clientSocket.getOutputStream(), true)
+                launch {
+                    collectResults()
+                }
+                var line: String?
+                do {
+                    line = input.readLine()?.let {
+                        println(it)
+                        fetchRequestUseCase(it)
+                        it
+                    }
+                } while (line != null)
+                input.close()
+                output.close()
+                clientSocket.close()
 
-        input.close()
-        output.close()
-        clientSocket.close()
-        serverSocket.close()
-        println("Server stopped")
+            } while (true)
+        }
+        catch(e: Exception){
+            println(e)
+            serverSocket.close()
+            println("Server stopped")
+        }
     }
 
     private suspend fun collectResults() {
         fetchRequestUseCase.result.collectLatest {
             val result = gson.toJson(it)
+            println(result)
             output.println(result)
         }
     }
